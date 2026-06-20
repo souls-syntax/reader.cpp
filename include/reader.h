@@ -67,6 +67,6 @@ int get_cursor_pos(int *rows, int *cols);
 int get_window_size(int *rows, int *cols);
 int is_number(char *strnum);
 
-size_t split(const std::string &txt, std::vector<std::string> &strings, char ch);
+size_t split(const std::string &txt, std::vector<std::string> &strings, const std::string &delims);
 
 

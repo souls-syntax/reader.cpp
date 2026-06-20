@@ -115,17 +115,15 @@ void editor_refresh_scrn(editor_cfg *cfg) {
 	append_buffer::instance().remove();
 }
 
-size_t split(const std::string &txt, std::vector<std::string> &strings, char ch) {
-	size_t pos = txt.find(ch);
-	size_t initial_pos = 0;
+size_t split(const std::string &txt, std::vector<std::string> &strings, const std::string &delims) {
+	size_t initial_pos = txt.find_first_not_of(delims, 0);
+	size_t pos = txt.find_first_of(delims, initial_pos);
 
-	while (pos != std::string::npos) {
+	while (initial_pos != std::string::npos) {
 		strings.push_back(txt.substr(initial_pos, pos - initial_pos));
-		initial_pos = pos + 1;
-		pos = txt.find(ch, initial_pos);
+		initial_pos = txt.find_first_not_of(delims, pos);
+		pos = txt.find_first_of(delims, initial_pos);
 	}
-
-	strings.push_back(txt.substr(initial_pos));
 	return strings.size();
 }
 

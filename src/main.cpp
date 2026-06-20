@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 		fclose(fp);
 
 		std::vector<std::string> data;
-		split(content, data, ' ');
+		split(content, data, " \t\r\n,;:!?");
 
 		while(1) {
 			for (std::string &k: data) {
